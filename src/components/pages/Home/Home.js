@@ -12,7 +12,7 @@ const Home = () => {
       <Col xs="9">
       <h2 className={styles.pageTitle}>All posts</h2>      
       </Col>
-      <Col xs="3 " className="d-flex justify-content-end" >
+      <Col xs="3" className="d-flex justify-content-end" >
         <Link to='post/add'>
           <Button variant="outline-info">Add post</Button>
         </Link>

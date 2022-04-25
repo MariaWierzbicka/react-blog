@@ -1,5 +1,13 @@
+.singlePost {
+  min-width: 30%;
+  min-height: max-content;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 17px;
+  // margin-right: 3%;
+}
 
-.posts {
-  display: flex;
-  // padding: 0;
+span {
+  font-weight: bold;
 }
