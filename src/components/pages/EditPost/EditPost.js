@@ -1,15 +1,16 @@
+import styles from './EditPost.module.scss';
+import EditPostForm from '../../features/EditPostForm/EditPostForm';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
-import { getPostById } from '../../../redux/postsRedux';
-
 
 const EditPost = () => {
 
   const { postId } = useParams();
-  const postData = useSelector(state => getPostById(state, postId))
 
   return (
-    <h1>EditPost</h1>
+  <div className={styles.formContainer}>
+      <h2>Edit post</h2>
+      <EditPostForm id={postId}/>
+    </div>
   )
 };
 
