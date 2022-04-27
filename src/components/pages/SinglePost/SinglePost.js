@@ -5,6 +5,8 @@ import { getPostById, removePost } from '../../../redux/postsRedux';
 import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import dateToString from '../../../utils/dateToString';
+
 
 
 
@@ -13,7 +15,9 @@ const SinglePost = (props) => {
   const { postId } = useParams();
   const postData = useSelector(state => getPostById(state, postId));
   const dispatch = useDispatch();
-
+  const publishedDate = (postData ? dateToString(postData.publishedDate) : null);
+  
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -54,8 +58,8 @@ const SinglePost = (props) => {
         <Button onClick={handleShow} variant="outline-danger">Delete</Button>
       </Col>
     </Row>
-      <p><span>Author: </span>{postData.author}<br></br><span>Published: </span>{postData.publishedDate}</p>
-      <p>{postData.content}</p>
+      <p><span>Author: </span>{postData.author}<br></br><span>Published: </span>{publishedDate}</p>
+      <p dangerouslySetInnerHTML={{ __html: postData.content }} />
     </div>
       
   )

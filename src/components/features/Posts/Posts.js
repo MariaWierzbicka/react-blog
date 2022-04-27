@@ -5,6 +5,8 @@ import { Col, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import shortid from 'shortid';
 import { Container } from 'react-bootstrap';
+import dateToString from '../../../utils/dateToString';
+
 
 const Posts = () => {
 
@@ -16,8 +18,8 @@ const Posts = () => {
       {posts.map(post =>
         <Col key={shortid()} className={styles.singlePost} xs={12} sm={5} md={3}>
           <h4>{post.title}</h4>
-          <p><span>Author: </span>{post.author}<br></br><span>Published: </span>{post.publishedDate}</p>
-          <p>{post.shortDescription}</p>
+          <p><span>Author: </span>{post.author}<br></br><span>Published: </span>{dateToString(post.publishedDate)}</p>
+          <p className={styles.description}>{post.shortDescription}</p>
             <Link key={post.id} to={'post/' + post.id}>
               <Button>Read more</Button>
             </Link>
