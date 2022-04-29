@@ -1,17 +1,21 @@
 import { Form, Button, Col } from 'react-bootstrap';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useForm } from "react-hook-form";
+import { getAllCategories } from '../../../redux/categoriesRedux';
+import shortid from 'shortid';
+
 
 const PostForm = ({action, actionText, ...props}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const categories = useSelector(state => getAllCategories(state));
 
   const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
@@ -20,18 +24,21 @@ const PostForm = ({action, actionText, ...props}) => {
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
   const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
   const [content, setContent] = useState(props.content || '');
+  const [category, setCategory] = useState(props.category || '');
 
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
 
   const id = props.id
 
   const handleSubmit = () => {
     setContentError(!content);
     setDateError(!publishedDate);
-
-    if(content && publishedDate){
-      dispatch(action( {id, title, author, publishedDate, shortDescription, content} ));
+    setCategoryError(!categoryError);
+ 
+    if(content && publishedDate && category){
+      dispatch(action( {id, title, author, publishedDate, shortDescription, content, category} ));
       navigate('/');
     };
   };
@@ -64,6 +71,16 @@ const PostForm = ({action, actionText, ...props}) => {
             selected={publishedDate}
             onChange={(date) => setPublishedDate(date)} />
             {dateError && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Categories</Form.Label>
+          <Form.Select value={category} onChange={e => setCategory(e.target.value) }>
+            <option value="" disabled>Select category...</option>
+            {categories.map(category =>
+                <option key={shortid()}>{category.name}</option>
+            )}
+          </Form.Select>
+          {categoryError && <small className="d-block form-text text-danger mt-2">This field is required</small>}
         </Form.Group>
       </Col>
       <Form.Group className="mb-3" controlId="formBasicEmail">

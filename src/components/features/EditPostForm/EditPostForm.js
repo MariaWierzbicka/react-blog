@@ -20,6 +20,7 @@ const EditPostForm = props => {
       publishedDate={postData.publishedDate}
       shortDescription={postData.shortDescription}
       content={postData.content}
+      category={postData.category}
     />
   )
 }

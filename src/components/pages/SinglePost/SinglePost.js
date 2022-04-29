@@ -57,7 +57,8 @@ const SinglePost = (props) => {
         <Button onClick={handleShow} variant="outline-danger">Delete</Button>
       </Col>
     </Row>
-      <p><span>Author: </span>{postData.author}<br></br><span>Published: </span>{publishedDate}</p>
+      <p><span>Author: </span>{postData.author}<br></br><span>Published: </span>{publishedDate}
+      <br></br><span>Category: </span>{postData.category}</p>
       <p dangerouslySetInnerHTML={{ __html: postData.content }} />
     </div>
       

@@ -8,9 +8,10 @@ import { Container } from 'react-bootstrap';
 import dateToString from '../../../utils/dateToString';
 
 
+
 const Posts = () => {
 
-  const posts = useSelector(state => getAllPosts(state))
+  const posts = useSelector(state => getAllPosts(state));
 
   return (
     <Container> 
@@ -18,7 +19,8 @@ const Posts = () => {
       {posts.map(post =>
         <Col key={shortid()} className={styles.singlePost} xs={12} sm={5} md={3}>
           <h4>{post.title}</h4>
-          <p><span>Author: </span>{post.author}<br></br><span>Published: </span>{dateToString(post.publishedDate)}</p>
+          <p><span>Author: </span>{post.author}<br></br><span>Published: </span>{dateToString(post.publishedDate)} <br></br>
+          <span>Category: </span>{post.category}</p>
           <p className={styles.description}>{post.shortDescription}</p>
             <Link key={post.id} to={'post/' + post.id}>
               <Button>Read more</Button>

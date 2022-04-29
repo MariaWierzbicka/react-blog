@@ -1,0 +1,16 @@
+.singlePost {
+  min-width: 30%;
+  min-height: max-content;
+  max-height: 250px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 17px;
+}
+
+span {
+  font-weight: bold;
+}
+.description {
+  overflow: hidden;
+}
