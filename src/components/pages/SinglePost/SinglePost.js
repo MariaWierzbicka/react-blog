@@ -16,8 +16,7 @@ const SinglePost = (props) => {
   const postData = useSelector(state => getPostById(state, postId));
   const dispatch = useDispatch();
   const publishedDate = (postData ? dateToString(postData.publishedDate) : null);
-  
-  
+    
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

@@ -3,7 +3,6 @@ import Posts from '../../features/Posts/Posts'
 import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-
 const Home = () => {
 
   return (
